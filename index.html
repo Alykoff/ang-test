@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>one</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Справочник</h3>
+        </div>
+
+        <div class="panel-body">
+          <div class="main row" ng-app="customersApp" ng-controller="customersController">
+          
+            <div class="data col-md-5">
+              <table class="customers table table-bordered">
+                <thead>
+                  <tr>
+                    <td>Имя</td>
+                    <td>Страна</td>
+                    <td></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="name in names | orderBy : 'Country'">
+                    <td>{{ name.Name }}</td>
+                    <td>{{ name.Country | uppercase }}</td>
+                    <td>
+                      <button class="btn btn-link" ng-click="editUser(name.Name)">
+                        Редактировать
+                      </button>
+                      <button class="btn btn-link" ng-click="delUser(name.Name)">
+                        Удалить
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          
+            <div class="edit col-md-4">
+              <form role="form">
+                <div class="form-group">
+                  <label for="name">Имя</label>
+                  <input class="form-control" 
+                      type="text" 
+                      id="name" 
+                      placeholder="Имя" 
+                      data-ng-model="editName" />
+                </div>
+                <div class="form-group">
+                  <label for="country">Страна</label>
+                  <input class="form-control" 
+                      type="text" 
+                      id="coutnry" 
+                      placeholder="Страна" 
+                      data-ng-model="editCountry" />
+                </div>
+                <button type="button" 
+                    class="btn btn-default"
+                    data-ng-click="save(editName, editCountry)">
+                  Сохранить
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/customersApp.js"></script>
+    <script src="js/customersController.js"></script>
+  </body>
+</html>
